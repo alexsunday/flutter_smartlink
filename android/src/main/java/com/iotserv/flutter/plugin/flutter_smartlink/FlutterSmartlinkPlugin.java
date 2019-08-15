@@ -55,8 +55,10 @@ public class FlutterSmartlinkPlugin implements MethodCallHandler {
         e.printStackTrace();
         timeout = 30;
       }
-
+//    smartLinkVersion == 7
       mSmartLinker = MulticastSmartLinker.getInstance();
+//    else
+//    mSmartLinker = SnifferSmartLinker.getInstance();
       mSmartLinker.setTimeoutPeriod(timeout * 1000);
       mSmartLinker.setOnSmartLinkListener(
               new OnSmartLinkListener() {
