@@ -2,6 +2,7 @@ package com.iotserv.flutter.plugin.flutter_smartlink;
 
 import android.app.Activity;
 
+import io.flutter.Log;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -65,6 +66,7 @@ public class FlutterSmartlinkPlugin implements MethodCallHandler {
                 Map<String, String> ret = new HashMap<String, String>();
                 @Override
                 public void onLinked(SmartLinkedModule smartLinkedModule) {
+                  Log.d("====smartlink===","onLinked");
                   ret.put("result","success");
                   ret.put("Id",smartLinkedModule.getId());
                   ret.put("Mac",smartLinkedModule.getMac());
@@ -74,12 +76,14 @@ public class FlutterSmartlinkPlugin implements MethodCallHandler {
 
                 @Override
                 public void onCompleted() {
+                  Log.d("====smartlink===","onCompleted");
                   ret.put("result","completed");
                   result.success(ret);
                 }
 
                 @Override
                 public void onTimeOut() {
+                  Log.d("====smartlink===","onTimeOut");
                   ret.put("result","timeout");
                   result.success(ret);
                 }
@@ -89,6 +93,7 @@ public class FlutterSmartlinkPlugin implements MethodCallHandler {
       try {
         mSmartLinker.start(activity.getApplicationContext(), password,ssid);
       }catch (Exception e) {
+        Log.d("====smartlink===",e.getMessage());
         e.printStackTrace();
         Map<String, String> ret = new HashMap<String, String>();
         ret.put("result","exception");
