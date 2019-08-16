@@ -15,7 +15,7 @@ class FlutterSmartlink {
     try {
       Map<String, dynamic> rm = new Map<String, dynamic>.from(
           await _channel.invokeMethod(
-              'start', {"ssid": ssid, "pass": pass, "bssid": bssid, "timeout": timeout}));
+              'start', {"ssid": ssid, "password": pass, "bssid": bssid, "timeout": timeout}));
       return rm;
     } catch (err) {
       print("Error===, $err");
